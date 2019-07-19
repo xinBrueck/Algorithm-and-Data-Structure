@@ -82,6 +82,22 @@ class BST:
             self.inOrderTraverseToArray(nodeToTraverse.right, arrayFromTree)
 
 
+    def serializeNode(nodeToStartSerialize, serializeString):
+        stringToAppend = str(nodeToStartSerialize.value, " ")
+        serializeString = serializeString + stringToAppend
+        if nodeToStartSerialize.left:
+            self.serializeNode(nodeToStartSerialize.left, serializeString)
+        else:
+            stringToAppend = str("# ")
+            serializeString = serializeString + stringToAppend
+
+        if nodeToStartSerialize.right:
+            self.serializeNode(nodeToStartSerialize.right, serializeString)
+        else:
+            stringToAppend = str("# ")
+            serializeString = serializeString + stringToAppend
+
+
     def delete(self, value):
         if self.root:
             self.deleteNode(None, "lr", self.root, value)
@@ -136,7 +152,6 @@ class BST:
         elif nodeToStartDelete.value < value:
             self.deleteNode(nodeToStartDelete,"r",nodeToStartDelete.right, value)
         else: self.deleteNode(nodeToStartDelete, "l", nodeToStartDelete.left, value)
-
 
 
 ##test BST
